@@ -17,27 +17,15 @@ const monologueLines = [
   'I am the one who knocks!'
 ];
 
-var totalBatteries = batteryBatches.reduce();
-var wordCountMap = monologueLines.reduce();
-
-// const totalBatteries = function getTotalBatteryBatches(batteryBatches, callback, initialValue){
-//   //let totalBatteries = 0;
-//
-//   batteryBatches.forEach(battery => {
-//     let totalBatteries = callback(totalBatteries, battery);
-//   });
-//   return totalBatteries;
-// }
-//
-// const wordCountMap = function getTotalMonologueLines(monologueLines, callback, initialValue){
-//   //let wordCountMap = 0;
-//
-//   monologueLines.forEach(line => {
-//     let wordCountMap = callback(monologueLines, line);
-//   });
-//   return wordCountMap;
-// }
-//
-// function callback(totalAmount, eachEntity, initialValue) {
-//   return totalAmount + eachEntity;
-// }
+var totalBatteries = batteryBatches.reduce(function(a, b) {
+  return a + b;
+});
+var wordCountMap = monologueLines.reduce(function(a, b) {
+  var totalA = 0;
+  var sum = 0;
+  monologueLines.forEach(function(line){
+    totalA += line;
+    sum = line.split(" ").length;
+  });
+  return {sum, totalA};
+});
